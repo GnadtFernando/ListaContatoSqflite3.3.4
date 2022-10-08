@@ -12,6 +12,7 @@ class ContactPage extends StatefulWidget {
 class _ContactPageState extends State<ContactPage> {
   Contact? _editedContact;
   bool _userEdited = false;
+  final _nameFocus = FocusNode();
 
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -40,7 +41,14 @@ class _ContactPageState extends State<ContactPage> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          if (_editedContact!.name != null &&
+              _editedContact!.name!.isNotEmpty) {
+            Navigator.pop(context, _editedContact);
+          } else {
+            FocusScope.of(context).requestFocus(_nameFocus);
+          }
+        },
         backgroundColor: Colors.red,
         child: const Icon(Icons.save),
       ),
@@ -49,15 +57,20 @@ class _ContactPageState extends State<ContactPage> {
         child: Column(
           children: [
             GestureDetector(
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: _editedContact!.img != null
-                    ? Image.asset('images/person.png')
-                    : Image.asset('images/person.png'),
+              child: SizedBox(
+                width: 200,
+                height: 200,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: _editedContact!.img != null
+                      ? Image.asset('images/person.png')
+                      : Image.asset('images/person.png'),
+                ),
               ),
             ),
             TextField(
               controller: _nameController,
+              focusNode: _nameFocus,
               decoration: const InputDecoration(labelText: 'Nome'),
               onChanged: (text) {
                 _userEdited = true;
