@@ -72,8 +72,8 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             children: [
               SizedBox(
-                height: 50,
-                width: 50,
+                height: 80,
+                width: 80,
                 child: CircleAvatar(
                   backgroundColor: Colors.white,
                   child: contacts[index].img != null
