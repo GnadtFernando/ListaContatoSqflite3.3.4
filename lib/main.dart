@@ -4,7 +4,7 @@ import 'package:lista_contatos/ui/home_page.dart';
 void main() {
   runApp(
     const MaterialApp(
-      home: Home(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     ),
   );
