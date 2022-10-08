@@ -88,16 +88,6 @@ class _HomePageState extends State<HomePage> {
                               as ImageProvider),
                 ),
               ),
-              // SizedBox(
-              //   height: 80,
-              //   width: 80,
-              //   child: CircleAvatar(
-              //     backgroundColor: Colors.white,
-              //     backgroundImage: contacts[index].img != null
-              //         ? Image.file(File(contacts[index].img))
-              //         : const AssetImage('images/person.png') as ImageProvider,
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Column(

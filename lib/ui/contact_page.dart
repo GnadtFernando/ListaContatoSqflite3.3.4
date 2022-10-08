@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lista_contatos/helpers/contact_helper.dart';
@@ -70,14 +72,17 @@ class _ContactPageState extends State<ContactPage> {
                     });
                   });
                 },
-                child: SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: _editedContact!.img != null
-                        ? Image.asset('images/person.png')
-                        : Image.asset('images/person.png'),
+                child: Container(
+                  height: 80.0,
+                  width: 80.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: _editedContact!.img != null
+                            ? FileImage(File(_editedContact!.img!))
+                            : const AssetImage('images/person.png')
+                                as ImageProvider),
                   ),
                 ),
               ),
