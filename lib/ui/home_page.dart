@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text('Ordenar de A-Z'),
               ),
             ],
-            // onSelected: _onderList,
+            onSelected: _orderList,
           ),
         ],
         title: const Text('Contatos'),
@@ -71,11 +71,15 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(10.0),
           child: Row(
             children: [
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                child: contacts[index].img != null
-                    ? Image.asset('images/person.png')
-                    : Image.asset('images/person.png'),
+              SizedBox(
+                height: 50,
+                width: 50,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: contacts[index].img != null
+                      ? Image.asset('images/person.png')
+                      : Image.asset('images/person.png'),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
@@ -193,5 +197,21 @@ class _HomePageState extends State<HomePage> {
         contacts = list.toList().cast();
       });
     });
+  }
+
+  void _orderList(OrderOptions result) {
+    switch (result) {
+      case OrderOptions.orderaz:
+        contacts.sort((a, b) {
+          return a.name!.toLowerCase().compareTo(b.name!.toLowerCase());
+        });
+        break;
+      case OrderOptions.orderza:
+        contacts.sort((a, b) {
+          return b.name!.toLowerCase().compareTo(a.name!.toLowerCase());
+        });
+        break;
+    }
+    setState(() {});
   }
 }
