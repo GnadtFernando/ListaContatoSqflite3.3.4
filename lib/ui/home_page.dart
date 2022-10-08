@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:lista_contatos/helpers/contact_helper.dart';
 import 'package:lista_contatos/ui/contact_page.dart';
@@ -71,16 +73,31 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(10.0),
           child: Row(
             children: [
-              SizedBox(
-                height: 80,
-                width: 80,
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: contacts[index].img != null
-                      ? Image.asset('images/person.png')
-                      : Image.asset('images/person.png'),
+              Container(
+                height: 80.0,
+                width: 80.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: contacts[index].img != null
+                          ? FileImage(
+                              File(contacts[index].img!),
+                            )
+                          : const AssetImage('images/person.png')
+                              as ImageProvider),
                 ),
               ),
+              // SizedBox(
+              //   height: 80,
+              //   width: 80,
+              //   child: CircleAvatar(
+              //     backgroundColor: Colors.white,
+              //     backgroundImage: contacts[index].img != null
+              //         ? Image.file(File(contacts[index].img))
+              //         : const AssetImage('images/person.png') as ImageProvider,
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Column(
