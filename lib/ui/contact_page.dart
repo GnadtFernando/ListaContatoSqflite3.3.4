@@ -73,8 +73,8 @@ class _ContactPageState extends State<ContactPage> {
                   });
                 },
                 child: Container(
-                  height: 80.0,
-                  width: 80.0,
+                  height: 140.0,
+                  width: 140.0,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
